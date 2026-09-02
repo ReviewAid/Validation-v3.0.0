@@ -1,0 +1,54 @@
+{
+  "title": "ReviewAid v3.0.0 Architecture Validation Study",
+  "version": "1.0",
+  "description": "Empirical validation of ReviewAid v3.0.0 against published human gold standards for full-text screening and structured data extraction. The study evaluates ReviewAid's architectural shift from LLM self-assessment to deterministic, source-grounded verification, including exact-string matching, semantic token overlap, negation detection, confidence scoring, and deterministic override logic. The validated artifact is the ReviewAid v3.0.0 software itself: all backends execute through the tool's production utils.py, parser.py, confidence.py, screener.py, and extractor.py code paths with the UI removed and the software version pinned to 3.0.0. The study evaluates three backends spanning approximately an order of magnitude in model capability: GLM-4.7-Flash, Cohere command-a-03-2025, and Ollama llama3.2:3b. Two validation arms are included: full-text screening using the CSMeD-FT dataset and structured data extraction using EvidenceInference 2.0. The repository contains the validation driver, corpus-building scripts, analysis code, audit workflow, reproducibility configuration, logged results, statistical analyses, and publication figures. All analyses are derived from per-paper logged outputs without additional API calls. The deposited study materials do not redistribute third-party copyrighted article PDFs or proprietary API credentials.",
+  "creators": [
+    {
+      "name": "Sahu, Vihaan"
+    },
+    {
+      "name": "Sahu, Ajit"
+    }
+  ],
+  "keywords": [
+    "ReviewAid",
+    "ReviewAid v3.0.0",
+    "evidence synthesis",
+    "systematic reviews",
+    "full-text screening",
+    "data extraction",
+    "large language models",
+    "LLMs",
+    "retrieval-grounded verification",
+    "deterministic verification",
+    "confidence scoring",
+    "risk control",
+    "machine learning",
+    "research software",
+    "software validation",
+    "reproducibility",
+    "CSMeD-FT",
+    "EvidenceInference"
+  ],
+  "license": "Apache-2.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "notes": "This validation study is released under Apache-2.0. Components originating from upstream projects remain subject to their respective licenses and copyright notices. The repository does not grant additional rights to third-party materials. The CSMeD-FT and EvidenceInference datasets remain subject to their respective licenses and terms of use. Article PDFs and other third-party copyrighted materials are not redistributed by this repository unless their applicable licenses permit redistribution.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ReviewAid/Validation-v3.0.0",
+      "relation": "isIdenticalTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/ReviewAid",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://doi.org/10.5334/jors.672",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-article"
+    }
+  ]
+}
