@@ -1,0 +1,31 @@
+# ReviewAid v3.0.0 validation study 
+
+
+
+.env
+
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+
+# datasets that 01_build_corpus.py re-downloads/re-renders deterministically
+raw_cache/
+validation/systematic-review-datasets/
+validation/corpus/pdfs/
+validation/corpus/extraction_pdfs/
+validation/corpus/raw/
+
+# the previous (v2.0.0/v2.1.0) validation study — 873 MB, lives in its own repo
+# (github.com/ReviewAid/Validation); not part of this one
+JORS_Validation/
+
+# machine-local runtime state (lockfiles, key-usage counters, run logs)
+*.lock
+*_usage.json
+validation/state/
+
+# tool-build artifacts inside the vendored ReviewAid_v3.0.0
+ReviewAid_v3.0.0/htmlcov/
+ReviewAid_v3.0.0/.coverage
+

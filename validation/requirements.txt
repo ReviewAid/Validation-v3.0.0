@@ -1,0 +1,13 @@
+# ReviewAid v3.0.0 validation environment.
+# Includes the tool's own pinned dependencies (the driver imports its modules)
+# plus the analysis stack. One file, one install.
+
+# --- ReviewAid v3.0.0's own requirements ---
+-r ../ReviewAid_v3.0.0/requirements.txt
+
+# --- validation extras ---
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+openpyxl>=3.1
+requests>=2.31

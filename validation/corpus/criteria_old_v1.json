@@ -1,0 +1,529 @@
+{
+  "CD001431": {
+    "title": "Decision aids for people facing health treatment or screening decisions",
+    "pop_inc": "Two independent reviewers screened abstracts for interventions designed to aid patients' decision making by providing information about treatment or screening options and their associated outcomes. Information about the decision aids was compiled in an inventory; those that had been evaluated in a RCT were reviewed in detail.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "12804407",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd001431",
+      "title": "Decision aids for people facing health treatment or screening decisions."
+    }
+  },
+  "CD013274": {
+    "title": "Consumers\u2019 and health providers\u2019 views and perceptions of partnering to improve health services design, delivery and evaluation: a co\u2010produced qualitative evidence synthesis",
+    "pop_inc": "We included qualitative studies that explored consumers' and health providers' perceptions and experiences of partnering in formal group formats to improve the planning, delivery or evaluation of health services.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "",
+      "pmcid": "PMC6388096",
+      "doi": "",
+      "title": "Consumers and health providers working in partnership for the promotion of person\u2010centred health services: a co\u2010produced qualitative evidence synthesis"
+    }
+  },
+  "CD000031": {
+    "title": "Antidepressants for smoking cessation",
+    "pop_inc": "We considered randomized trials comparing antidepressant drugs to placebo or an alternative therapeutic control for smoking cessation. For the meta-analysis, we excluded trials with less than six months follow-up.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "12804385",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd000031",
+      "title": "Antidepressants for smoking cessation."
+    }
+  },
+  "CD011737": {
+    "title": "Reduction in saturated fat intake for cardiovascular disease",
+    "pop_inc": "Trials fulfilled the following criteria: 1) randomised with appropriate control group; 2) intention to reduce saturated fat intake OR intention to alter dietary fats and achieving a reduction in saturated fat; 3) not multifactorial; 4) adult humans with or without cardiovascular disease (but not acutely ill, pregnant or breastfeeding); 5) intervention at least 24 months; 6) mortality or cardiovascular morbidity data available.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "26068959",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd011737",
+      "title": "Reduction in saturated fat intake for cardiovascular disease."
+    }
+  },
+  "CD009593": {
+    "title": "Xpert Ultra versus Xpert MTB/RIF for pulmonary tuberculosis and rifampicin resistance in adults with presumptive pulmonary tuberculosis",
+    "pop_inc": "We included cross\u2010sectional and cohort type diagnostic accuracy studies that directly compared the index tests in participants with presumptive pulmonary tuberculosis. These study designs included paired and randomized comparative accuracy studies. Paired comparative accuracy studies are those in which each participant receives both index tests. Randomized comparative accuracy studies are those which randomly allocate participants to index tests, with each participant receiving only one index test. 'Presumptive pulmonary tuberculosis' refers to a patient who presents with symptoms or signs suggestive of tuberculosis. We included studies where the index tests were evaluated for both pulmonary tuberculosis and rifampicin resistance, pulmonary tuberculosis alone, or rifampicin resistance alone. We also included randomized controlled trials that evaluated the use of the index(s) test on patient health outcomes, but that also reported sensitivity and specificity. Although the study design was a randomized trial for the purpose of determining the impact of the test on participant outcomes, the study design was a cross\u2010sectional study for the purpose of determining the diagnostic accuracy of the index tests in this review. However, we did not identify any randomized controlled trials. We used abstracts to identify published studies and included these publications if they met our inclusion criteria. We only included studies that reported data comparing the index test(s) to an acceptable reference standard from which we could extract true\u2010positive (TP), true\u2010negative (TN), false\u2010positive (FP), and false\u2010negative (FN) values. The index tests could be assessed alone or together with other tests. We included studies that evaluated the index tests in HIV\u2010positive people irrespective of tuberculosis symptoms, for example HIV\u2010positive people being assessed for antiretroviral therapy. We included these studies for the following reasons: the risk of developing tuberculosis is much h",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "europepmc_fulltext",
+    "provenance": {
+      "pmid": "33616229",
+      "pmcid": "PMC12045032",
+      "doi": "10.1002/14651858.cd009593.pub5",
+      "title": "Xpert Ultra versus Xpert MTB/RIF for pulmonary tuberculosis and rifampicin resistance in adults with presumptive pulmonary tuberculosis."
+    }
+  },
+  "CD013635": {
+    "title": "Experiences of conditional and unconditional cash transfers intended for improving health outcomes and health service use: a qualitative evidence synthesis",
+    "pop_inc": "We included primary studies, using qualitative methods or mixed-methods studies with qualitative research reporting on recipients' experiences of cash transfer interventions where health outcomes were evaluated. Recipients could be adult patients of healthcare services, the general adult population as recipients of cash targeted at themselves or directed at children. Studies could be evaluated on any mental or physical health condition or cash transfer mechanism. Studies could come from any country and be in any language. Two",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "",
+      "pmcid": "PMC7266174",
+      "doi": "",
+      "title": "Experiences of conditional and unconditional cash transfers intended for improving health outcomes and health service use: a qualitative evidence synthesis"
+    }
+  },
+  "CD001800": {
+    "title": "Exercise\u2010based cardiac rehabilitation for coronary heart disease",
+    "pop_inc": "Men and women of all ages, in hospital or community settings, who have had myocardial infarction, coronary artery bypass graft or percutaneous transluminal coronary angioplasty, or who have angina pectoris or coronary artery disease defined by angiography.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "11279730",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd001800",
+      "title": "Exercise-based rehabilitation for coronary heart disease."
+    }
+  },
+  "CD010910": {
+    "title": "Interventions for female drug\u2010using offenders",
+    "pop_inc": "We include randomised controlled trials designed to reduce, eliminate or prevent relapse in female drug-using offenders. We also report data on the cost and cost effectiveness of interventions.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "24399765",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd010910",
+      "title": "Interventions for female drug-using offenders."
+    }
+  },
+  "CD007470": {
+    "title": "Vitamin D supplementation for prevention of mortality in adults",
+    "pop_inc": "Randomised trials that compared any type of vitamin D in any dose with any duration and route of administration versus placebo or no intervention in adult participants. Participants could have been recruited from the general population or from patients diagnosed with a disease in a stable phase. Vitamin D could have been administered as supplemental vitamin D (vitamin D3 (cholecalciferol) or vitamin D2 (ergocalciferol)) or as an active form of vitamin D (1\u03b1-hydroxyvitamin D (alfacalcidol) or 1,25-dihydroxyvitamin D (calcitriol)).",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "24414552",
+      "pmcid": "PMC11285307",
+      "doi": "10.1002/14651858.cd007470.pub3",
+      "title": "Vitamin D supplementation for prevention of mortality in adults."
+    }
+  },
+  "CD008366": {
+    "title": "Community wide interventions for increasing physical activity",
+    "pop_inc": "Cluster randomised controlled trials, randomised controlled trials, quasi-experimental designs which used a control population for comparison, interrupted time-series studies, and prospective controlled cohort studies were included. Only studies with a minimum six-month follow up from the start of the intervention to measurement of outcomes were included. Community wide interventions had to comprise at least two broad strategies aimed at physical activity for the whole population. Studies which randomised individuals from the same community were excluded.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "27256576",
+      "pmcid": "PMC5352640",
+      "doi": "10.1007/s13142-016-0419-3",
+      "title": "Physical activity: a synopsis and comment on \"community-wide interventions for increasing physical activity\"."
+    }
+  },
+  "CD006748": {
+    "title": "Social norms information for alcohol misuse in university and college students",
+    "pop_inc": "Randomised controlled trials or cluster-randomised controlled trials that compared a social normative intervention versus no intervention, alcohol education leaflet or other 'non-normative feedback' alcohol intervention and reported on alcohol consumption or alcohol-related problems in university or college students.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "26711838",
+      "pmcid": "PMC8750744",
+      "doi": "10.1002/14651858.cd006748.pub4",
+      "title": "Social norms information for alcohol misuse in university and college students."
+    }
+  },
+  "CD010901": {
+    "title": "Interventions for drug\u2010using offenders with co\u2010occurring mental health problems",
+    "pop_inc": "We included randomised controlled trials designed to reduce, eliminate or prevent relapse in drug-using offenders with co-occurring mental illness. We also reported data on the cost and cost effectiveness of interventions.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "24385324",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd010901",
+      "title": "Interventions for drug-using offenders with co-occurring mental illness."
+    }
+  },
+  "CD007228": {
+    "title": "Structured telephone support or non\u2010invasive telemonitoring for patients with heart failure",
+    "pop_inc": "We included only peer-reviewed, published RCTs comparing structured telephone support or non-invasive home telemonitoring to usual care of people with chronic heart failure. The intervention or usual care could not include protocol-driven home visits or more intensive than usual (typically four to six weeks) clinic follow-up.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "27864319",
+      "pmcid": "",
+      "doi": "10.1136/heartjnl-2015-309191",
+      "title": "Structured telephone support or non-invasive telemonitoring for patients with heart failure."
+    }
+  },
+  "CD008873": {
+    "title": "Vitamin D supplementation for women during pregnancy",
+    "pop_inc": "Randomised and quasi-randomised trials evaluating the effect of supplementation with vitamin D alone or in combination with other micronutrients for women during pregnancy in comparison to placebo or no intervention.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "40645126",
+      "pmcid": "",
+      "doi": "10.1016/j.explore.2025.103209",
+      "title": "Vitamin D supplementation for women during pregnancy: summary of a Cochrane review."
+    }
+  },
+  "CD004376": {
+    "title": "Exercise for osteoarthritis of the knee",
+    "pop_inc": "We included randomised controlled trials (RCTs) that evaluated exercise for knee OA versus a comparator listed above. Our outcomes of interest were pain severity, physical function, quality of life, participant-reported treatment success, adverse events, and study withdrawals.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "39625083",
+      "pmcid": "PMC11613324",
+      "doi": "10.1002/14651858.cd004376.pub4",
+      "title": "Exercise for osteoarthritis of the knee."
+    }
+  },
+  "CD013775": {
+    "title": "Prognostic factors for the development and progression of proliferative diabetic retinopathy in people with diabetic retinopathy",
+    "pop_inc": "Inclusion criteria Eligible study designs included prospective or retrospective cohort and case\u2010control longitudinal studies including participants who have not had previous treatment for DR. Although we initially planned to include randomised controlled trials (RCTs) evaluating therapeutic interventions to prevent progression of DR where there was a control, untreated arm, ultimately we decided not to include these (see Differences between protocol and review ). We also included studies based on longitudinal registry data. It was a mandatory requirement for inclusion in the review that studies had to evaluate prognostic factors specifically for the development and progression of PDR, as opposed to generalised progression of DR. Studies investigating general microvascular complications of diabetes but including a subset of data related to factors involved in the development of PDR were eligible for inclusion if specific information on this group (PDR) was given. Exclusion criteria We excluded case reports, as they would have introduced selection bias, and editorials and letters to editors not containing primary data. We did not include cross\u2010sectional studies, as this type of study design is less appropriate for the evaluation of prognostic factors for the development or progression of disease. Targeted population The target population consisted of adults (\u2265 18 years of age) of any gender with NPDR or PDR with less than HRC\u2010PDR, diagnosed as per standard clinical practice. Studies including participants of all ethnicities, geographical locations, and socioeconomic status were eligible for inclusion. Any appropriate studies including a subset of relevant participants were considered as potentially eligible if data from this subset were given separately. Types of prognostic factors This review considered and included prognostic factor studies only. Specific prognostic factors of interest included, but were not restricted to: routinely collected patient demographics an",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "to be predicted Development of PDR The development of PDR was determined by the presence of NVD or NVE, as diagnosed based on fundus examination, fundus photography, or fundus fluorescein angiography. We considered participants requiring laser treatment for PDR specifically to have progressed to the outcome of PDR. Development of HRC\u2010PDR Progression from less than HRC\u2010PDR to HRC\u2010PDR. HRC\u2010PDR was defined according to the ETDRS as: i) NVD 0.5 disc area plus vitreous haemorrhage or pre\u2010retinal haemorrhage; ii) vitreous haemorrhage or pre\u2010retinal haemorrhage obscuring more than one disc area ( Diabetic Retinopathy Study Research Group 1991 ). These features could have been determined by clinical examination or by the grading of ophthalmic images, both fundus photography and fundus fluorescein angiograms. Participants requiring laser treatment for HRC\u2010PDR specifically were considered as having progressed to the outcome of HRC\u2010PDR. The time horizon for the evaluation of health outcomes in this review was three years (\u00b1 two years), eight years (\u00b1 two years), or lifelong, if available. If not, we accepted and presented other time points",
+    "autofill_source": "europepmc_fulltext",
+    "provenance": {
+      "pmid": "36815723",
+      "pmcid": "PMC9943918",
+      "doi": "10.1002/14651858.cd013775.pub2",
+      "title": "Prognostic factors for the development and progression of proliferative diabetic retinopathy in people with diabetic retinopathy."
+    }
+  },
+  "CD014758": {
+    "title": "Interventions for myopia control in children: a living systematic review and network meta\u2010analysis",
+    "pop_inc": "We included randomised controlled trials (RCTs) of optical, pharmacological, light therapy and behavioural",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_new_blob",
+    "provenance": {
+      "pmid": "",
+      "pmcid": "PMC8078182",
+      "doi": "",
+      "title": "Interventions for myopia control in children: a living systematic review and network meta\u2010analysis"
+    }
+  },
+  "CD010912": {
+    "title": "Workplace interventions for reducing sitting at work",
+    "pop_inc": "We included randomised controlled trials (RCTs), cross-over RCTs, cluster-randomised controlled trials (cluster-RCTs), and quasi-RCTs of interventions to reduce sitting at work. For changes of workplace arrangements, we also included controlled before-and-after studies. The primary outcome was time spent sitting at work per day, either self-reported or measured using devices such as an accelerometer-inclinometer and duration and number of sitting bouts lasting 30 minutes or more. We considered energy expenditure, total time spent sitting (including sitting at and outside work), time spent standing at work, work productivity and adverse events as secondary outcomes.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "30556590",
+      "pmcid": "PMC6517221",
+      "doi": "10.1002/14651858.cd010912.pub5",
+      "title": "Workplace interventions for reducing sitting at work."
+    }
+  },
+  "CD011145": {
+    "title": "Mini\u2010Mental State Examination (MMSE) for the detection of dementia in clinically unevaluated people aged 65 and over in community and primary care populations",
+    "pop_inc": "We included studies that compared the 11-item (maximum score 30) MMSE test (at any cut point) in people who had not undergone prior testing versus a commonly accepted clinical reference standard for all-cause dementia and subtypes (Alzheimer disease dementia, Lewy body dementia, vascular dementia, frontotemporal dementia). Clinical diagnosis included all-cause (unspecified) dementia, as defined by any version of the Diagnostic and Statistical Manual of Mental Disorders (DSM); International Classification of Diseases (ICD) and the Clinical Dementia Rating.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "26760674",
+      "pmcid": "PMC8812342",
+      "doi": "10.1002/14651858.cd011145.pub2",
+      "title": "Mini-Mental State Examination (MMSE) for the detection of dementia in clinically unevaluated people aged 65 and over in community and primary care populations."
+    }
+  },
+  "CD012199": {
+    "title": "Interventions to improve water, sanitation, and hygiene for preventing soil\u2010transmitted helminth infection",
+    "pop_inc": "We will include all randomized controlled trials (RCTs) and quasi-RCTs either individually allocated or assigned by cluster, such as household, village, school, or other group cluster. We will consider cluster RCTs for inclusion if they include at least two units per trial arm. We will exclude non-human animal studies and duplicate publications. For studies that pool multiple intestinal parasites into one outcome measure (for example, Giardia intestinalis plus soil-transmitted helminth (STH)), we will contact study authors to request disaggregated data. If information about STH outcomes alone is unavailable, we will exclude the study. Types of participants Trials must be conducted in environments where STHs are endemic and transmitted, and trial participants are those that reside in the trial site. We will include participants with or without STH infection at baseline. All types of participants will be considered, although we expect most trials to focus on school-age children. We will include trials with preschool-ag",
+    "pop_exc": "",
+    "int_inc": "Potential interventions include provision of water supply, latrine construction or sanitation promotion, hygiene education, and water quality improvements (such as safe storage and handling or water treatment). We will include all interventions that improve WASH access or practices, or both, including those that employ multiple water, sanitation, and hygiene (WASH) strategies or an integrated approach that includes mass drug administration (MDA). Control groups will be trial participants or groups that follow their typical WASH behaviours rather than the prescribed intervention or those that received a different type of intervention (such as MDA). We will exclude interventions that include deworming (that is, treatment with anthelminthic drugs) in the experimental arm along with a WASH intervention, but not the control arm. Types of outcome measures Primary outcomes Prevalence of infection with at least one STH species, as defined by at least one ovum of A. lumbricoides , T. trichiura , hookworm, or Strongyloides stercoralis found in the participant's faeces. Secondary outcomes Prevalence and intensity of infection as measured by eggs per gram of faeces for specific STH type, including A. lumbricoides (ascariasis), T. trichiura (trichuriasis), hookworm ( A. duodenale or N. americanus , or both), or S. stercoralis (strongyloidiasis). Any adverse events resulting from WASH interventions and mass drug administration (MDA)",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "europepmc_fulltext",
+    "provenance": {
+      "pmid": "27346984",
+      "pmcid": "PMC4916930",
+      "doi": "10.1002/14651858.cd012199",
+      "title": "Interventions to improve water, sanitation, and hygiene for preventing soil-transmitted helminth infection."
+    }
+  },
+  "CD004250": {
+    "title": "Exercises for mechanical neck disorders",
+    "pop_inc": "We included randomized controlled trials (RCTs) comparing single therapeutic exercise with a control for adults suffering from neck pain with or without cervicogenic headache or radiculopathy.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "25629215",
+      "pmcid": "PMC9508492",
+      "doi": "10.1002/14651858.cd004250.pub5",
+      "title": "Exercises for mechanical neck disorders."
+    }
+  },
+  "CD013088": {
+    "title": "Case management for integrated care of older people with frailty in community settings",
+    "pop_inc": "We included randomised controlled trials (RCTs) that compared case management with standard care in community-dwelling people aged 65 years and older living with frailty.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "",
+      "pmcid": "PMC6513596",
+      "doi": "",
+      "title": "Case management for integrated care of frail older people in community settings"
+    }
+  },
+  "CD006612": {
+    "title": "Homocysteine\u2010lowering interventions for preventing cardiovascular events",
+    "pop_inc": "We included randomised controlled trials assessing the effects of homocysteine-lowering interventions for preventing cardiovascular events with a follow-up period of one year or longer. We considered myocardial infarction and stroke as the primary outcomes. We excluded studies in patients with end-stage renal disease.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "28816346",
+      "pmcid": "PMC6483699",
+      "doi": "10.1002/14651858.cd006612.pub5",
+      "title": "Homocysteine-lowering interventions for preventing cardiovascular events."
+    }
+  },
+  "CD013778": {
+    "title": "Inspiratory muscle training, with or without concomitant pulmonary rehabilitation, for chronic obstructive pulmonary disease (COPD)",
+    "pop_inc": "We included published randomized controlled trials (RCTs), as full\u2010text articles or abstracts, as well as unpublished RCTs. We included abstracts if they reported at least the number of participants in each group, the duration of the intervention, and the training load. We accepted trials with more than two arms. We excluded observational studies, quasi\u2010RCTs and cross\u2010over trials since no washout period for IMT has been established. Types of participants We included people with COPD diagnosed according to international standards ( GOLD 2022 ), at any stage of the disease. We placed no restrictions on age, duration, setting, or the kind of pulmonary rehabilitation. We planned to include RCTs with different conditions for the same intervention of interest as long as we could obtain the data of participants with COPD separately. We classified COPD according to GOLD 2022 stages based on the predicted value of Forced Expiratory Pressure in 1 Second (FEV1): GOLD 1 \u2010 mild: FEV1 \u2265 80% predicted GOLD 2 \u2010 moderate: 50% \u2264 FEV1 &lt; 80% predicted GOLD 3 \u2010 severe: 30% \u2264 FEV1 &lt; 50% predicted GOLD 4 \u2010 very severe:",
+    "pop_exc": "",
+    "int_inc": "The review consists of two comparisons, as follows. IMT plus PR versus PR IMT versus no treatment or sham First, we included trials that explored the benefit of combining IMT and PR compared to PR only. PR consists of, but is not limited to, exercise training, physiotherapy, therapeutic education, and nutritional and psychosocial care ( McCarthy 2015 ). We included different types of IMT irrespective of the mode of delivery: resistance training (high load, low frequency) or endurance training (low load, high frequency), device (i.e. threshold loading, resistive flow device, isocapnic hyperpnea). We made no restrictions on the duration, supervision (home\u2010based or in a healthcare setting), or timing (during hospitalization or later) of the intervention. We excluded studies where the training was conducted only once per week (face\u2010to\u2010face or distance sessions), regardless of the total duration of the clinical trial. The minimum accepted training load was 30% of PImax or more ( Hill 2010 ). We also excluded trials that used a resistive device without controlling the breathing pattern. If a study conducted an incremental training load that started less than 30% of PImax, we considered only the follow\u2010up from which the load was equal to our threshold. According to the proportion of supervised sessions, we defined supervision as: under 20%: unsupervised; 20% to 70%: partially supervised; and above 70%: fully supervised. For the second comparison, we compared IMT with control or sham. We defined sham training as using a resistance of less than 30% of PImax. We accepted control groups if they did not receive any intervention or received an intervention other than exercise training to blind participants (e.g. therapeutic education). We made the exception for breathing exercises if participants in the control group did not receive more than one type of training (e.g. diaphragmatic breathing, pursed lips breathing), and the purpose was not to compare it with IMT. Types of outco",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "europepmc_fulltext",
+    "provenance": {
+      "pmid": "36606682",
+      "pmcid": "PMC9817429",
+      "doi": "10.1002/14651858.cd013778.pub2",
+      "title": "Inspiratory muscle training, with or without concomitant pulmonary rehabilitation, for chronic obstructive pulmonary disease (COPD)."
+    }
+  },
+  "CD007654": {
+    "title": "Long\u2010term effects of weight\u2010reducing drugs in people with hypertension",
+    "pop_inc": "We included randomised controlled trials (RCTs) of at least 24 weeks' duration that compared approved long-term weight management drugs to placebo in non-pregnant adults with essential hypertension.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_new_blob",
+    "provenance": {
+      "pmid": "42318855",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd007654.pub6",
+      "title": "Long-term effects of weight-reducing drugs in people with hypertension."
+    }
+  },
+  "CD014821": {
+    "title": "Remote care through telehealth for people with inflammatory bowel disease",
+    "pop_inc": "All published, unpublished, and ongoing randomised controlled trials (RCTs) that evaluated telehealth interventions targeted at people with IBD versus any other type of intervention or no intervention. We did not include studies based on digital patient information resources or education resources, unless they formed part of a wider package including an element of telehealth. We excluded studies where remote monitoring of blood or faecal tests was the only form of monitoring.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "",
+      "pmcid": "PMC8078277",
+      "doi": "",
+      "title": "Remote care through telehealth for people with inflammatory bowel disease"
+    }
+  },
+  "CD000313": {
+    "title": "Discharge planning from hospital",
+    "pop_inc": "Randomised trials and controlled trials comparing discharge planning with routine discharge for hospital patients. The outcomes were mortality, clinical complications, hospital length of stay, readmissions, discharge destination, general and disease specific health status, functional status, psychological well-being, patient satisfaction, carer satisfaction, carer burden, cost to the health service, patient and family, general practice, and community services.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "11034682",
+      "pmcid": "",
+      "doi": "10.1002/14651858.cd000313",
+      "title": "Discharge planning from hospital to home."
+    }
+  },
+  "CD012004": {
+    "title": "Motor control exercise for chronic non\u2010specific low\u2010back pain",
+    "pop_inc": "We included randomised controlled trials (RCTs) that examined the effectiveness of MCE in patients with chronic non-specific LBP. We included trials comparing MCE with no treatment, another treatment or that added MCE as a supplement to other interventions. Primary outcomes were pain intensity and disability. We considered function, quality of life, return to work or recurrence as secondary outcomes. All outcomes must have been measured with a valid and reliable instrument.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "26742533",
+      "pmcid": "PMC8761501",
+      "doi": "10.1002/14651858.cd012004",
+      "title": "Motor control exercise for chronic non-specific low-back pain."
+    }
+  },
+  "CD006546": {
+    "title": "Kinship care for the safety, permanency, and well\u2010being of children removed from the home for maltreatment",
+    "pop_inc": "Controlled experimental and quasi-experimental studies, in which children removed from the home for maltreatment and subsequently placed in kinship foster care were compared with children placed in non-kinship foster care for child welfare outcomes in the domains of well-being, permanency, or safety.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "24488572",
+      "pmcid": "PMC7386884",
+      "doi": "10.1002/14651858.cd006546.pub3",
+      "title": "Kinship care for the safety, permanency, and well-being of children removed from the home for maltreatment."
+    }
+  },
+  "CD013328": {
+    "title": "Interventions to improve sanitation for preventing diarrhoea",
+    "pop_inc": "We included randomized controlled trials (RCTs), quasi-RCTs, non-randomized controlled trials (NRCTs), controlled before-and-after studies (CBAs), and matched cohort studies of interventions aimed at introducing or expanding the coverage and/or use of sanitation facilities in children and adults in any country or population. Our primary outcome of interest was diarrhoea and secondary outcomes included dysentery (bloody diarrhoea), persistent diarrhoea, hospital or clinical visits for diarrhoea, mortality, and adverse events. We included sanitation interventions whether they were conducted independently or in combination with other interventions.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "pubmed_old_blob",
+    "provenance": {
+      "pmid": "",
+      "pmcid": "PMC6497425",
+      "doi": "",
+      "title": "Interventions to improve sanitation for preventing diarrhoea"
+    }
+  },
+  "CD005563": {
+    "title": "Interventions for preventing delirium in hospitalised non\u2010ICU patients",
+    "pop_inc": "We included randomised controlled trials (RCTs) of single and multicomponent non-pharmacological interventions for preventing delirium in hospitalised adults cared for outside intensive care or high dependency settings. We only included non-pharmacological interventions which were designed and implemented to prevent delirium.",
+    "pop_exc": "",
+    "int_inc": "",
+    "int_exc": "",
+    "comp_inc": "",
+    "comp_exc": "",
+    "outcome": "",
+    "autofill_source": "abstract_blob",
+    "provenance": {
+      "pmid": "34826144",
+      "pmcid": "PMC8623130",
+      "doi": "10.1002/14651858.cd013307.pub3",
+      "title": "Non-pharmacological interventions for preventing delirium in hospitalised non-ICU patients."
+    }
+  }
+}
