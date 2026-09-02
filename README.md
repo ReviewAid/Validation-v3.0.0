@@ -1,4 +1,6 @@
-# ReviewAid v3.0.0 - Architecture Validation Study
+![Banner](ReviewAid_v3.0.0/assets/RA_banner111.png)
+
+# Architecture Validation Study
 
 Empirical validation of **ReviewAid v3.0.0** (Sahu & Balakrishnan 2026, *JORS* 14:21, doi:10.5334/jors.672) against published human gold standards.
 
