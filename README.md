@@ -400,3 +400,7 @@ find results/stats results/figures -type f -delete
 ```
 
 2. Follow 6. (setup) and 8. (steps 1–17, the complete command walkthrough); The next section covers spreading backends across machines. In short: build the two corpora and freeze the criteria (8. steps 2–6), pilot (steps 9–11), run all three backends on the whole corpora (step 12), adjudicate the audit sheet (steps 14–16), analyse (step 17).
+
+
+**⚠️ NOTE:** Run all the commands within the virtual environment made in the validation folder during the initial Set up phase. 
+Do not run the commands outside the validation folder, since that will throw an error.
