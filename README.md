@@ -23,6 +23,8 @@ Each selected review's **published eligibility criteria go into ReviewAid verbat
 All analyses come from ingredients **logged per paper** (raw self-assessed confidence, deterministic score, override event, per-field grounding verdicts, parse events) - **zero extra API calls**.
 
 
+---
+
 ## 3. Layout
 
 ```
@@ -206,7 +208,8 @@ After cloning, run:
 
 
 5. **Curate the criteria** (`CORPUS - MANUAL`):
-   Open `corpus/criteria_to_fill.json` and verify every review's auto-fetched criteria: check and complete the P/I/C/O include and exclude fields so they match what the review actually published. The fetcher is good but not perfect - this human pass is what makes the screening criteria trustworthy.
+
+Open `corpus/criteria_to_fill.json` and verify every review's auto-fetched criteria: check and complete the P/I/C/O include and exclude fields so they match what the review actually published. The fetcher is good but not perfect - this human pass is what makes the screening criteria trustworthy.
 
 Once every review is checked, freeze them (step 6).
 
@@ -269,8 +272,8 @@ Then start the MAIN RUNS (step 12). Every run is resume-safe: an interrupted run
 
 ```bash
 # - if the storm is heavy for glm, run the two modules sequentially:
-      `python 02_run_screening.py --model glm` #then
-      `python 03_run_extraction.py --model glm`
+      python 02_run_screening.py --model glm     
+      python 03_run_extraction.py --model glm
 ```
 
 13. **DETERMINISM check** (`DETERMINISM`):
@@ -307,7 +310,9 @@ Then manually check `human_agrees_with_gold` (yes/no/unsure). One adjudication c
     python 05_stats.py
 ```
 
-The full statistics suite (calibration raw-vs-final by tier, override-as-detector, ungrounded-field rates capability→workload with TOST, conformal risk control, cluster-bootstrap sens/spec/WSS, κ/F1) + every figure in SVG and 600-dpi PNG + `results/stats/stats_report.md`. When the adjudicated sheet has verdicts, section [H] joins it back by `paper_id` and reports raw vs adjudicated accuracy/sensitivity/specificity per backend (gold overturned = effective gold label flipped) see `results/stats/adjudicated_metrics.csv` and the raw-vs-adjudicated dumbbell `results/figures/fig9_adjudicated_impact` (SVG + PNG). Re-run 05 after you finish the manual adjudication so [H] reflects your final verdicts.
+The full statistics suite (calibration raw-vs-final by tier, override-as-detector, ungrounded-field rates capability→workload with TOST, conformal risk control, cluster-bootstrap sens/spec/WSS, κ/F1) + every figure in SVG and 600-dpi PNG + `results/stats/stats_report.md`.
+
+When the adjudicated sheet has verdicts, section [H] joins it back by `paper_id` and reports raw vs adjudicated accuracy/sensitivity/specificity per backend (gold overturned = effective gold label flipped) see `results/stats/adjudicated_metrics.csv` and the raw-vs-adjudicated dumbbell `results/figures/fig9_adjudicated_impact` (SVG + PNG). Re-run 05 after you finish the manual adjudication so [H] reflects your final verdicts.
 
 ---
 
@@ -324,7 +329,7 @@ keep the Ollama app running, then `python run_all.py --model ollama`. Nothing el
    
    
 3. **Main machine - finish:** 
-copy `results/ollama/` back (or `git pull` - `results/` is kept in git on purpose), then run steps 14–17 **once, after cohere + glm + ollama are all complete**.
+copy `results/ollama/` back (or `git pull`), then run steps 14–17 **once, after cohere + glm + ollama are all complete**.
 
 
 ---
@@ -334,10 +339,13 @@ copy `results/ollama/` back (or `git pull` - `results/` is kept in git on purpos
 | Phase | Calls | With overhead | Keys |
 |---|---|---|---|
 | Screening (2,000 papers) | 2,000 | ~2,300 | 3 |
-| Extraction E1 EvidenceInference (~2,184) | 2,184 | ~2,400 | 5 total |
+| Extraction E1 EvidenceInference (~2,184) | 2,184 | ~2,400 | 6 total |
 | **Total** | **~4,200** | **~4,700** | **5 min / 6 recommended** |
 
 You can append new keys to `COHERE_KEYS` in `.env`, then `python keys.py` to verify capacity. GLM and Ollama consume no Cohere quota; Tier-1 keyword exclusions consume none at all.
+
+
+---
 
 
 ## 10. Troubleshooting
@@ -375,6 +383,9 @@ python 05_stats.py --models glm cohere ollama
 ```
 
 This re-runs the full analysis suite (report sections A–H) and rewrites `results/stats/stats_report.md` plus every figure. The analysis is deterministic (fixed seeds, thresholds frozen in `config.ANALYSIS`), so the outputs match the deposited report up to floating-point noise from library versions.
+
+
+---
 
 
 ### Route B - full re-run of the study (days, API quota, statistically equivalent)
