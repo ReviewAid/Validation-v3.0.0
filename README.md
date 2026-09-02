@@ -264,6 +264,8 @@ Real PDFs + frozen criteria end-to-end before spending the big quota. Check: dec
 
 Then start the MAIN RUNS (step 12). Every run is resume-safe: an interrupted run picks up again at the first unprocessed article.
 
+---
+
 12. **MAIN RUNS** (`MAIN RUN`, screening 1,968 + extraction 2,184 per backend, simultaneously, checkpoint/resume, self-healing):
 
 ```bash
