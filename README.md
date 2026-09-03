@@ -2,6 +2,8 @@
 
 # Architecture Validation Study
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22288038.svg)](https://doi.org/10.5281/zenodo.22288038)
+
 Empirical validation of **ReviewAid v3.0.0** (Sahu & Balakrishnan 2026, *JORS* 14:21, doi:10.5334/jors.672) against published human gold standards.
 
 The JORS paper described v2.1.0; v3.0.0's paradigm shift **from LLM self-assessment to deterministic source-grounded verification** (exact-string Check A, token-overlap Check B, negation detection Check E, override logic) - is the intervention this study measures.
