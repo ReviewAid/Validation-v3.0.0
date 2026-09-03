@@ -29,12 +29,12 @@ plt.rcParams.update({
 SINGLE_COL, DOUBLE_COL = 3.35, 6.9  # inches
 
 COLORS = {
-    "glm": "#0072B2", "cohere": "#E69F00", "ollama": "#009E73",
+    "gemini": "#0072B2", "cohere": "#E69F00", "ollama": "#009E73",
     "include": "#0072B2", "exclude": "#D55E00", "maybe": "#CC79A7",
     "tier1": "#0072B2", "tier2": "#E69F00", "override": "#CC79A7",
     "fallback": "#009E73", "grey": "#7F7F7F",
 }
-MODEL_LABELS = {"glm": "GLM-4.7-Flash", "cohere": "Command-A",
+MODEL_LABELS = {"gemini": "Gemini 3.6 Flash", "cohere": "Command-A",
                 "ollama": "Llama3.2-3B (local)"}
 
 

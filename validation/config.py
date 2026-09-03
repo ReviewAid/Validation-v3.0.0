@@ -38,14 +38,19 @@ load_dotenv(BASE / ".env")
 # spread). Not a contest - a stress test of the architecture.
 # ---------------------------------------------------------------------------
 MODELS = {
-    "glm": {
-        "provider": "GLM (Z.ai)", "model": "GLM-4.7-Flash",
-        # ZAI_API_KEYS supports a comma-separated pool (recommended: 3 keys so
-        # parallel screening+extraction runs never starve). Falls back to ZAI_API_KEY.
+    "gemini": {
+        "provider": "OpenAI", "model": "gemini-3.6-flash",
+        # Free tier (Google AI Studio key, https://aistudio.google.com/apikey):
+        # ~15 requests/min and ~1,500 requests/day per project, enforced
+        # server-side — a run that hits the daily cap just stops and is
+        # resumed the next day. Do NOT enable billing on the project (it can
+        # void the free tier). Uses the tool's own OpenAIProvider against
+        # Gemini's OpenAI-compatible endpoint.
         "keys": lambda: [k.strip() for k in
-                         (os.getenv("ZAI_API_KEYS") or os.getenv("ZAI_API_KEY") or "").split(",")
+                         (os.getenv("GEMINI_API_KEYS") or os.getenv("GEMINI_API_KEY") or "").split(",")
                          if k.strip()],
-        "workers": 2,  # free tier is rate-limited (429s at higher concurrency)
+        "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        "workers": 2,  # run_all runs 02+03 in parallel -> ~4 in-flight ≈ the ~15 RPM cap
     },
     "cohere": {
         "provider": "Cohere", "model": "command-a-03-2025",

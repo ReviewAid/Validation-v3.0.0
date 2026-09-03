@@ -2,7 +2,7 @@
 
     python 02_run_screening.py --model cohere --limit 5   # smoke test
     python 02_run_screening.py --model all                # full runs
-    python 02_run_screening.py --model glm --rerun-subset # determinism check
+    python 02_run_screening.py --model gemini --rerun-subset # determinism check
 
 Guarantees:
 - every corpus paper is attempted; a worker crash retries the paper, and if it
@@ -177,7 +177,7 @@ def rerun_subset(model_key: str, rows: list):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="all", choices=["glm", "cohere", "ollama", "all"])
+    ap.add_argument("--model", default="all", choices=["gemini", "cohere", "ollama", "all"])
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=0)
     ap.add_argument("--rerun-subset", action="store_true")

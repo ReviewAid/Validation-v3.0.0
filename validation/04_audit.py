@@ -1,12 +1,12 @@
 """Generate the masked human-audit sheet(s) for discordant decisions.
 
 Single backend:
-    python 04_audit.py --model glm
+    python 04_audit.py --model gemini
 
 Union across backends (recommended — adjudicate each paper ONCE; the verdict
 about the published gold label is backend-independent, and stats apply it to
 every backend that flagged the paper):
-    python 04_audit.py --models glm cohere ollama
+    python 04_audit.py --models gemini cohere ollama
 
 Sheet contains: every FALSE NEGATIVE (gold include, tool exclude/maybe), every
 FALSE POSITIVE (gold exclude, tool include), tool-maybe on gold-include
@@ -117,7 +117,7 @@ def main():
     args = ap.parse_args()
 
     if args.models:
-        keys = [k for k in args.models if k in ("glm", "cohere", "ollama")]
+        keys = [k for k in args.models if k in ("gemini", "cohere", "ollama")]
         out = build_union(keys)
         name = "adjudication_sheet_union.xlsx"
         models_label = "+".join(keys)
@@ -126,12 +126,12 @@ def main():
         name = f"adjudication_sheet_{args.model}.xlsx"
         models_label = args.model
     else:
-        raise SystemExit("pass --model glm  or  --models glm cohere ollama")
+        raise SystemExit("pass --model gemini  or  --models gemini cohere ollama")
 
     keep_cols = [c for c in ("audit_stratum", "review_id", "paper_id", "title",
                              "gold_label", "flagged_by", "tool_decision",
-                             "reason", "decision_glm", "decision_cohere",
-                             "decision_ollama", "reason_glm", "reason_cohere",
+                             "reason", "decision_gemini", "decision_cohere",
+                             "decision_ollama", "reason_gemini", "reason_cohere",
                              "reason_ollama") if c in out.columns]
     sheet = out[keep_cols].copy()
     sheet["pdf_path"] = sheet["paper_id"].map(

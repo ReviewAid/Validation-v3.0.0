@@ -486,9 +486,9 @@ one year. Gastrointestinal upset was the most common adverse effect.""",
     print(f"[demo] screening: {len(rows)} PDFs + labels + criteria")
     print(f"[demo] extraction: {len(tasks)} article PDFs + gold fields")
     print("[demo] test with:")
-    print("         python 02_run_screening.py --model glm --limit 3")
-    print("         python 03_run_extraction.py --model glm --limit 3")
-    print("         python 05_stats.py --models glm")
+    print("         python 02_run_screening.py --model gemini --limit 3")
+    print("         python 03_run_extraction.py --model gemini --limit 3")
+    print("         python 05_stats.py --models gemini")
     print("[demo] BEFORE building the real corpora, remove demo data:")
     print("         rm corpus/gold_labels.csv corpus/reviews.json "
           "corpus/extraction_tasks.csv corpus/pdfs/demo_*.pdf corpus/extraction_pdfs/demo_*.pdf")
@@ -757,7 +757,7 @@ Published criteria (verbatim):
 
 def curate_criteria() -> None:
     """criteria v3: LLM-assisted curation of the verbatim criteria into SHORT
-    PICO phrases (the tool's documented input format). GLM free backend; every
+    PICO phrases (the tool's documented input format). local (Ollama) backend; every
     original retained for provenance; author spot-check still required before
     --finalize-criteria."""
     sys.path.insert(0, str(config.BASE))
@@ -778,7 +778,7 @@ def curate_criteria() -> None:
         raw, key = query_provider("ollama", _CURATION_PROMPT.format(blob=blob[:4000]),
                                   temperature=0.1, max_tokens=1500)
         if not raw:
-            print(f"[curate] {rid}: GLM call failed (rate limit?) — rerun later")
+            print(f"[curate] {rid}: local call failed (rate limit?) — rerun later")
             continue
         # route through the tool's own bulletproof parser (6-stage JSON recovery)
         result = ra_parser.parse_result(raw, "Ollama (Local)", key, "llama3.2:3b",
@@ -786,7 +786,7 @@ def curate_criteria() -> None:
                                         original_text="")
         parsed = (result or {}).get("extracted") or None
         if not parsed:
-            print(f"[curate] {rid}: GLM output unparseable — keeping v2, rerun later")
+            print(f"[curate] {rid}: local output unparseable — keeping v2, rerun later")
             continue
         for k in pico:
             v = str((parsed or {}).get(k, "")).strip()

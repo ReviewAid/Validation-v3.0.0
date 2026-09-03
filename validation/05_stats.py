@@ -1,7 +1,7 @@
 """Full statistics suite + publication figures (SVG + 600-dpi PNG).
 
     python 05_stats.py            # analyses everything found in results/
-    python 05_stats.py --models glm cohere ollama
+    python 05_stats.py --models gemini cohere ollama
 
 Architecture-first structure (see README section 3):
   A. Operational profile           (tier shares, parse recovery, latency)
@@ -33,7 +33,7 @@ from scipy import stats as st
 import config
 import viz
 
-MODELS_DEFAULT = ["glm", "cohere", "ollama"]
+MODELS_DEFAULT = ["gemini", "cohere", "ollama"]
 A = config.ANALYSIS
 RNG = np.random.default_rng(A["bootstrap_seed"])
 
@@ -451,7 +451,7 @@ def workload_analysis(all_df: dict) -> dict:
             return float((a & (d["decision"] != d["gold_label"])).mean())
         boot[mk] = cluster_bootstrap(df, err_of)
     pairs = {}
-    for a_m, b_m in (("glm", "cohere"), ("ollama", "glm"), ("ollama", "cohere")):
+    for a_m, b_m in (("gemini", "cohere"), ("ollama", "gemini"), ("ollama", "cohere")):
         if a_m in boot and b_m in boot:
             diff = boot[a_m][0] - boot[b_m][0]
             pairs[f"{a_m}_vs_{b_m}"] = {
@@ -463,7 +463,7 @@ def workload_analysis(all_df: dict) -> dict:
 
 def plot_workload(w: dict):
     fig, ax = viz.new_fig(viz.SINGLE_COL, 3.2)
-    markers = {"glm": "o", "cohere": "s", "ollama": "^"}
+    markers = {"gemini": "o", "cohere": "s", "ollama": "^"}
     for mk, s in w["per_backend"].items():
         p = s["auto_error"] * 100
         lo, hi = s["auto_error_ci"][0] * 100, s["auto_error_ci"][1] * 100

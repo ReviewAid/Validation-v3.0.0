@@ -9,7 +9,9 @@ The JORS paper described v2.1.0; v3.0.0's paradigm shift **from LLM self-assessm
 
 **The validated artifact is the tool itself.** Every backend runs through ReviewAid v3.0.0's own `utils.py` / `parser.py` / `confidence.py` code paths - the exact screener and extractor prompts, the exact Tier-1 keyword rule, the exact confidence override - with the UI removed and version pinned (`CITATION.cff` must read `3.0.0`; the driver refuses to run otherwise). 
 
-The three backends are a **stress test, not a contest** - "a better model gives better output" is trivial. They span ~10× capability: free cloud (GLM-4.7-Flash), cloud (Cohere `command-a-03-2025`), weak local (Ollama `llama3.2:3b`, 2 GB, M1-friendly).
+The three backends are a **stress test, not a contest** - "a better model gives better output" is trivial. They span ~10× capability: free cloud (Google Gemini `gemini-3.6-flash`), cloud (Cohere `command-a-03-2025`), weak local (Ollama `llama3.2:3b`, 2 GB, M1-friendly).
+
+> **Deviation from the original design:** the third (free-cloud) arm was originally planned on Z.ai's GLM. GLM-4.5-Flash, GLM-4.6V-Flash and GLM-4.7-Flash were all piloted, but free-tier rate limits - account-level concurrency caps and persistent 429 storms, visible even on a 3-paper pilot - made corpus-scale runs impractical. The free-cloud arm was therefore moved to Google Gemini 3.6 Flash's free tier.
 
 ---
 
@@ -32,7 +34,7 @@ All analyses come from ingredients **logged per paper** (raw self-assessed confi
 ```
 validation/
 ├── config.py             # models, paths, frozen analysis settings
-├── keys.py               # Cohere rotation + budget check (python keys.py)
+├── keys.py               # Cohere/Gemini key usage + budget check (python keys.py)
 ├── ra_driver.py          # headless v3.0.0 screener+extractor paths, full logging
 ├── viz.py                # publication figures: SVG + 600-dpi PNG, column sizing
 ├── 01_build_corpus.py    # EvidenceInference (auto) / CSMeD (bootstrap) / demo
@@ -54,7 +56,7 @@ validation/
 ├── results/figures/      # *.svg + *.png
 ├── results/audit/        # adjudication_sheet_union.xlsx (built by 04, filled
 │                         # by 06 + manual adjudication)
-└── state/                # Cohere usage counters
+└── state/                # Cohere/Gemini usage counters
 ```
 
 ---
@@ -74,9 +76,9 @@ validation/
 
 **Logged analysis ingredients** (per record): `ai_confidence_raw` (pre-override), `deterministic_confidence`, `override_fired`, `tier`, `criteria_match` ratio, `grounding` per-field verdicts (screening records carry `tier1_keyword` too), `parse_ok`, `api_returned`, `latency_s`.
 
-**Key rotation - Cohere AND GLM.** Both pools rotate. `keys.py` fingerprints keys, persists counts to `state/<provider>_usage.json` (re-read on every request, so the parallel screening + extraction processes never double-spend a key), and always issues the least-used key. Cohere trial keys ≈1,000 calls each - a key is retired on quota/auth errors (429s are transient → exponential backoff in `query_provider`). GLM keys rotate the same way on quota/server-busy errors, with **no fixed call cap**.
+**Key rotation - Cohere.** `keys.py` fingerprints keys, persists counts to `state/<provider>_usage.json` (re-read on every request, so the parallel screening + extraction processes never double-spend a key), and always issues the least-used key. Cohere trial keys ≈1,000 calls each - a key is retired on quota/auth errors (429s are transient → exponential backoff in `query_provider`).
 
-**GLM timed retries.** Free-tier GLM is flaky (timeouts, "server busy"). Every GLM call retries up to **4 attempts with 15/30/45 s timers**, rotating keys between attempts, before giving up (a giveaway to the tool's own regex fallback - never a crash). Cohere retries via backoff inside `keys.rotate`.
+**Gemini free tier.** Gemini allows ~15 requests/min and ~1,500 requests/day (reset at midnight Pacific), enforced server-side. 429s retry with exponential backoff inside `keys.rotate`; when the daily cap is reached the run simply stops and is resumed the next day with the same command (resume-safe). Gemini calls go through the tool's own `OpenAIProvider` against Gemini's OpenAI-compatible endpoint - no tool code changes.
 
 **Resume + error retry.** Every finished paper appends one JSON line; re-runs skip completed IDs. A paper that failed *completely* (API dead even after retries AND fallback parse failed) is recorded as `decision: "error"` and error rows are **retried automatically on the next run** instead of being skipped. Downstream scripts dedupe by paper_id (newest row wins), so a retried paper's old error row never contaminates the analysis. Interrupt anything, rerun the same command, and it carries on exactly where it stopped.
 
@@ -102,9 +104,9 @@ pip install -r requirements.txt
 
 `requirements.txt` pulls in ReviewAid v3.0.0's own pinned dependencies (via `-r ../ReviewAid_v3.0.0/requirements.txt`) plus the analysis stack (numpy, scipy, matplotlib, openpyxl, requests).
 
-- Fill `validation/.env_template` with your details (GLM keys, Cohere keys, real `ENTREZ_EMAIL`/`UNPAYWALL_EMAIL`), then rename it to `validation/.env`.
+- Fill `validation/.env_template` with your details (Gemini key, Cohere keys, real `ENTREZ_EMAIL`/`UNPAYWALL_EMAIL`), then rename it to `validation/.env`.
   
-- **GLM key pool:** screening and extraction run *simultaneously* and share the GLM keys (least-used rotation, process-safe). Paste extra keys comma-separated into `ZAI_API_KEYS` - 2–3 keys are recommended so the two parallel jobs never starve.
+- **Gemini key:** one free key from <https://aistudio.google.com/apikey> covers the whole arm (no credit card; do not enable billing on the project). The ~1,500 requests/day cap means screening (~1,400 calls) finishes in a day and extraction (~2,184) in about 1.5 days - if a run stops on the daily cap, rerun the same command the next day (resume-safe).
   Check anytime: `python keys.py`.
 
 > Ollama is (the local arm) in this study because the architecture claim is strongest if a deliberately *weak local* model (3B parameters) is still made safe by ReviewAid's confidence gating.
@@ -123,32 +125,32 @@ python 01_build_corpus.py --arm demo
 Expect: `[demo] screening: 3 PDFs + labels + criteria` and `[demo] extraction: 3 article PDFs + gold fields`.
 
 ```bash
-# 2. screening demo: 3 papers through ReviewAid's real screener (GLM backend)
-python 02_run_screening.py --model glm --limit 3
+# 2. screening demo: 3 papers through ReviewAid's real screener (Gemini backend)
+python 02_run_screening.py --model gemini --limit 3
 ```
 Expect one line per paper, e.g.:
 ```
-[glm] 1/3 demo_001: include conf=0.9 tier=tier2_llm_selfassess (15.2s)
-[glm] 2/3 demo_002: exclude conf=1.0 tier=tier1_deterministic (0.0s)   <- zero API calls
-[glm] 3/3 demo_003: exclude conf=... tier=... (...)
+[gemini] 1/3 demo_001: include conf=0.9 tier=tier2_llm_selfassess (15.2s)
+[gemini] 2/3 demo_002: exclude conf=1.0 tier=tier1_deterministic (0.0s)   <- zero API calls
+[gemini] 3/3 demo_003: exclude conf=... tier=... (...)
 ```
 `demo_002` (a rat study) is auto-excluded by the Tier-1 keyword rule with confidence 1.0 and **no API call** - the deterministic layer working as designed.
 
 ```bash
 # 3. extraction demo: 3 articles through ReviewAid's real extractor
-python 03_run_extraction.py --model glm --limit 3
+python 03_run_extraction.py --model gemini --limit 3
 ```
 Expect per-article lines with `conf=`, `tier=`, and `ungrounded_fields=` counts (fields whose extracted text could not be grounded in the source - the hallucination instrument).
 
 ```bash
 # 4. screening AND extraction simultaneously (what the real study does)
-python run_all.py --model glm
+python run_all.py --model gemini
 ```
 Resume-safe: anything already completed in steps 2–3 is skipped.
 
 ```bash
 # 5. statistics + figures from the demo run
-python 05_stats.py --models glm
+python 05_stats.py --models gemini
 ```
 Expect the printed report plus `results/stats/stats_report.md` and figures in `results/figures/` - each as `.svg` (vector) and `.png` (600 dpi).
 
@@ -226,7 +228,7 @@ Writes `corpus/reviews.json`. After this, criteria are frozen - any change is a 
 7. **Clear stale screening results** (`MAINTENANCE`):
 
 ```bash
-   rm results/cohere/screening_results.jsonl results/glm/screening_results.jsonl results/ollama/screening_results.jsonl
+   rm results/cohere/screening_results.jsonl results/gemini/screening_results.jsonl results/ollama/screening_results.jsonl
 ```
 
 Deletes screening rows processed under the old prose criteria. Do NOT delete `results/*/extraction_results.jsonl` - extraction never uses criteria.
@@ -240,7 +242,7 @@ Deletes screening rows processed under the old prose criteria. Do NOT delete `re
 9. **PILOT** (`PILOT`):
 
 ```bash
-    python run_all.py --model glm --limit 5
+    python run_all.py --model gemini --limit 5
     python run_all.py --model cohere --limit 5
     python run_all.py --model ollama --limit 5
 ```
@@ -271,13 +273,14 @@ Then start the MAIN RUNS (step 12). Every run is resume-safe: an interrupted run
 ```bash
     python run_all.py --model cohere   #(~5 h)
     python run_all.py --model ollama   #(local, longest - around 20 h+)
-    python run_all.py --model glm      #(overnight; free tier 429s are retried automatically)
+    python run_all.py --model gemini   #(free tier: ~1,500 requests/day - run over ~2 days; 429s retried automatically)
 ```
 
 ```bash
-# - if the storm is heavy for glm, run the two modules sequentially:
-      python 02_run_screening.py --model glm     
-      python 03_run_extraction.py --model glm
+# - if the daily cap stops the run, rerun the same command the next day (resume-safe),
+#   or run the two modules separately:
+      python 02_run_screening.py --model gemini     
+      python 03_run_extraction.py --model gemini
 ```
 
 13. **DETERMINISM check** (`DETERMINISM`):
@@ -290,7 +293,7 @@ Reruns 100 papers a second time (seed 42). Measures run-to-run stability - what 
 14. **AUDIT** (`AUDIT`):
 
 ```bash
-    python 04_audit.py --models glm cohere ollama
+    python 04_audit.py --models gemini cohere ollama
 ```
 
 Builds ONE union sheet: every paper where any backend disagreed with the published gold label (FNs, FPs, maybes) + a 10% sample of agreements per backend, each backend's decision side by side, masked.
@@ -333,7 +336,7 @@ keep the Ollama app running, then `python run_all.py --model ollama`. Nothing el
    
    
 3. **Main machine - finish:** 
-copy `results/ollama/` back (or `git pull`), then run steps 14–17 **once, after cohere + glm + ollama are all complete**.
+copy `results/ollama/` back (or `git pull`), then run steps 14–17 **once, after cohere + gemini + ollama are all complete**.
 
 
 ---
@@ -346,7 +349,7 @@ copy `results/ollama/` back (or `git pull`), then run steps 14–17 **once, afte
 | Extraction E1 EvidenceInference (~2,184) | 2,184 | ~2,400 | 6 total |
 | **Total** | **~4,200** | **~4,700** | **5 min / 6 recommended** |
 
-You can append new keys to `COHERE_KEYS` in `.env`, then `python keys.py` to verify capacity. GLM and Ollama consume no Cohere quota; Tier-1 keyword exclusions consume none at all.
+You can append new keys to `COHERE_KEYS` in `.env`, then `python keys.py` to verify capacity. Gemini and Ollama consume no Cohere quota; Tier-1 keyword exclusions consume none at all.
 
 
 ---
@@ -358,7 +361,7 @@ You can append new keys to `COHERE_KEYS` in `.env`, then `python keys.py` to ver
 |---|---|
 | `ReviewAid folder is version X` | The study is strictly v3.0.0 - point `TOOL_DIR` at the v3.0.0 code |
 | `All Cohere keys exhausted` | Add keys to `COHERE_KEYS` in `.env`; `python keys.py` |
-| GLM jobs slow / "server busy" | Normal on the free tier: 4 timed retries (15/30/45 s) with key rotation happen automatically; add a 2nd/3rd key to `ZAI_API_KEYS` for more headroom |
+| Gemini daily cap / 429s | Free tier: ~15 requests/min, ~1,500 requests/day (reset midnight Pacific). 429s back off automatically; when the day's quota is spent, rerun the same command the next day (resume-safe) |
 | A paper shows `decision: "error"` | It failed even after retries - just rerun the same command; error rows are retried automatically |
 | Frequent 429s (Cohere) | Normal on trial keys; rotation + backoff handles it; workers ≤3 |
 | Ollama timeouts | If the app isn't running or the model is missing, start it (`ollama serve`, `ollama pull llama3.2:3b`). Transient busy/timeout errors retry automatically (10 attempts, backoff to 60 s) |
@@ -382,8 +385,8 @@ Every number and figure in the paper regenerates from the deposited artifacts al
 ```bash
 git clone <this repo> && cd validation
 pip install -r requirements.txt
-# results already exist in the repo: results/glm/*.jsonl  results/cohere/*.jsonl  results/ollama/*.jsonl  results/audit/adjudication_sheet_union.xlsx   (the adjudicated sheet)
-python 05_stats.py --models glm cohere ollama
+# results already exist in the repo: results/gemini/*.jsonl  results/cohere/*.jsonl  results/ollama/*.jsonl  results/audit/adjudication_sheet_union.xlsx   (the adjudicated sheet)
+python 05_stats.py --models gemini cohere ollama
 ```
 
 This re-runs the full analysis suite (report sections A–H) and rewrites `results/stats/stats_report.md` plus every figure. The analysis is deterministic (fixed seeds, thresholds frozen in `config.ANALYSIS`), so the outputs match the deposited report up to floating-point noise from library versions.

@@ -2,7 +2,7 @@
 
     python 06_auto_audit.py
 
-Run after `04_audit.py --models glm cohere ollama` has built
+Run after `04_audit.py --models gemini cohere ollama` has built
 `results/audit/adjudication_sheet_union.xlsx`.
 
 Per row, the pre-filled verdict (a suggestion to speed up adjudication —
@@ -25,7 +25,7 @@ import config
 def check_agreement(row):
     gold = str(row.get("gold_label", "")).strip().lower()
     concrete, n_maybe = [], 0
-    for model in ("glm", "cohere", "ollama"):
+    for model in ("gemini", "cohere", "ollama"):
         d = str(row.get(f"decision_{model}", "")).strip().lower()
         if not d or d in ("nan", "error"):
             continue
@@ -52,7 +52,7 @@ def auto_audit():
     sheet_path = config.AUDIT_DIR / "adjudication_sheet_union.xlsx"
     if not sheet_path.exists():
         raise SystemExit("adjudication_sheet_union.xlsx not found. "
-                         "Run 04_audit.py --models glm cohere ollama first.")
+                         "Run 04_audit.py --models gemini cohere ollama first.")
 
     df = pd.read_excel(sheet_path)
 

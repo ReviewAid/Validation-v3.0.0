@@ -2,9 +2,10 @@
 
 - Cohere: trial keys allow ~1000 calls each (strict). Keys are retired on
   quota/auth errors; 429s are transient (backoff happens in ra_driver).
-- GLM (Z.ai): free-tier keys, no fixed call cap -> rotate only when the API
-  signals a quota/busy error, so parallel screening+extraction jobs share the
-  pool. Paste extra keys into ZAI_API_KEYS in .env.
+- Gemini (Google AI Studio): free tier, ~1500 requests/day per project,
+  enforced server-side -> usage is tracked per key but there is no fixed
+  per-key call cap to retire on. Paste extra keys (one per project) into
+  GEMINI_API_KEYS in .env.
 
 State lives in state/<provider>_usage.json and is RE-READ on every key request,
 making rotation safe across the parallel screening/extraction processes.
@@ -83,7 +84,7 @@ class RotatingKeys:
             # (Cohere enforces the real quota server-side regardless.)
             print(f"[keys] usage-state write skipped ({e}); continuing.")
 
-    def get_key(self) -> str:
+    def get_key(self, avoid: str | None = None) -> str:
         with _LOCK:
             state = self._load()
             usable = [k for k in self.keys
@@ -92,6 +93,10 @@ class RotatingKeys:
                 raise RuntimeError(
                     f"All {self.name} keys exhausted. Add keys in validation/.env.")
             usable.sort(key=lambda k: state.get(_fingerprint(k), {}).get("calls", 0))
+            if avoid is not None and len(usable) > 1:
+                for k in usable:
+                    if k != avoid:
+                        return k
             return usable[0]
 
     def mark_call(self, key: str) -> None:
@@ -132,9 +137,9 @@ def get_manager(provider: str) -> RotatingKeys:
         if provider == "cohere":
             _MANAGERS[provider] = RotatingKeys(
                 "cohere", config.MODELS["cohere"]["keys"](), PER_KEY_LIMIT)
-        elif provider == "glm":
+        elif provider == "gemini":
             _MANAGERS[provider] = RotatingKeys(
-                "glm", config.MODELS["glm"]["keys"](), None)
+                "gemini", config.MODELS["gemini"]["keys"](), None)
         else:
             raise KeyError(provider)
     return _MANAGERS[provider]
@@ -186,8 +191,8 @@ if __name__ == "__main__":
             print("  OK for the full study.")
     except RuntimeError as e:
         print(f"  {e}")
-    print("GLM (free tier, no fixed cap):")
+    print("Gemini (free tier):")
     try:
-        print(get_manager("glm").usage_report())
+        print(get_manager("gemini").usage_report())
     except RuntimeError as e:
         print(f"  {e}")

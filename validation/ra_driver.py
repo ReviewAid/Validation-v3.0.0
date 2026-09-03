@@ -148,39 +148,14 @@ def query_provider(model_key: str, prompt: str, temperature: float = 0.1,
             return prov.generate(messages, temperature, max_tokens)
         return keys_mod.rotate("cohere", _call)
 
-    if m["provider"] == "GLM (Z.ai)":
-        # Free-tier GLM is flaky (timeouts, server-busy). Retry ANY failure up
-        # to 4 attempts with timed backoff, rotating to the least-used key in
-        # the pool each attempt, before giving up (None -> tool's regex fallback).
-        mgr = keys_mod.get_manager("glm")
-        waits = (0, 15, 30, 45)
-        key = mgr.get_key()
-        last_err = None
-        for attempt, wait in enumerate(waits):
-            if wait:
-                time.sleep(wait)
-                tail = f" — last error: {str(last_err)[:80]}" if last_err else ""
-                print(f"[glm] attempt {attempt + 1}/{len(waits)} after {wait}s{tail}",
-                      flush=True)
-            try:
-                prov = utils.get_provider_instance("GLM (Z.ai)", key, m["model"])
-                out = prov.generate(messages, temperature, max_tokens)
-                mgr.mark_call(key)
-                return out, key
-            except Exception as e:
-                last_err = e
-                if keys_mod.is_quota_error(e):
-                    mgr.mark_exhausted(key)
-                    try:
-                        key = mgr.get_key()
-                    except RuntimeError:
-                        return None, key
-                time.sleep(1)
-
+    if m.get("base_url"):
+        # OpenAI-compatible endpoint on a custom host (Gemini free tier):
+        # the tool's own OpenAIProvider + cohere-style rotation/backoff
         def _call(k):
-            prov = utils.get_provider_instance("GLM (Z.ai)", k, m["model"])
+            prov = utils.get_provider_instance(m["provider"], k, m["model"],
+                                               base_url=m["base_url"])
             return prov.generate(messages, temperature, max_tokens)
-        return keys_mod.rotate("glm", _call)
+        return keys_mod.rotate(model_key, _call)
 
     key = m["keys"]()[0]  # Ollama: local, no keys
     base_url = config.OLLAMA_BASE_URL if m["provider"] == "Ollama (Local)" else None
