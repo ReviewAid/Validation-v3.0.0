@@ -62,10 +62,33 @@ About Cohere model : command-a-03-2025
     architecture        cohere2
     parameters          111B
     context length      256000
-    embedding length    256000
+    embedding length    12288
     
 
   License
     COHERE FOR AI COMMUNITY LICENSE
+
+
+============================================================================
+
+
+Run environment / quantization notes (for methods write-up)
+
+  - command-a-03-2025 : Cohere API (cloud). Full-precision hosted weights,
+    not quantized locally. Context 256000.
+  - deepseek-v2:16b   : local via ollama, Q4_0 quantization. MoE model:
+    15.7B total parameters, ~2.4B active per token, so its effective
+    compute is much smaller than the raw parameter count suggests.
+    Context 163840.
+  - llama3.2:3b       : local via ollama, Q4_K_M quantization. Dense 3.2B.
+    Context 131072.
+
+  Note: the two ollama models use different quant levels (Q4_0 is coarser
+  than Q4_K_M), so small score differences between them can partly be
+  quantization artifacts rather than model quality.
+
+  Hardware: Apple M1, 8 GB unified memory, macOS 15.7.3., Apple M3, 18 GB unified memory, macOS 26.6.2.
+
+
 
     
