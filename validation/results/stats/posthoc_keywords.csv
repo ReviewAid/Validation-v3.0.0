@@ -1,0 +1,37 @@
+model,keyword,fires,wrong_kills_include
+ollamads,adults,32,11
+ollamads,adolescents,18,7
+ollamads,children,17,6
+ollamads,administrators,12,2
+ollamads,interventions,10,5
+ollamads,men,9,2
+ollamads,general population,8,4
+ollamads,pregnant,8,2
+ollamads,no dementia,5,3
+ollamads,animals,5,1
+ollamads,acute LBP,5,3
+ollamads,cross-sectional studies,5,3
+cohere,adults,32,11
+cohere,adolescents,18,7
+cohere,children,17,6
+cohere,administrators,12,2
+cohere,interventions,10,5
+cohere,men,9,2
+cohere,general population,8,4
+cohere,pregnant,8,2
+cohere,no dementia,5,3
+cohere,animals,5,1
+cohere,acute LBP,5,3
+cohere,cross-sectional studies,5,3
+ollama,adults,32,11
+ollama,adolescents,18,7
+ollama,children,17,6
+ollama,administrators,12,2
+ollama,interventions,10,5
+ollama,men,9,2
+ollama,general population,8,4
+ollama,pregnant,8,2
+ollama,no dementia,5,3
+ollama,animals,5,1
+ollama,acute LBP,5,3
+ollama,cross-sectional studies,5,3

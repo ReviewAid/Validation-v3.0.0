@@ -43,6 +43,11 @@ validation/
 ├── 04_audit.py           # masked human-audit sheet (discordance + 10% sample)
 ├── 05_stats.py           # all analyses + figures
 ├── 06_auto_audit.py      # pre-fills the audit sheet (never touches filled rows)
+├── 07_posthoc_analysis.py  # offline post-hoc analyses for the paper (no API
+│                         # calls, never touches 05_stats outputs): decision-layer
+│                         # decomposition, keyword-off counterfactuals, recall-vs-
+│                         # workload operating curves + review-cluster bootstrap,
+│                         # strict vs fuzzy effect direction, Tier-1 keyword audit
 ├── run_all.py            # screening + extraction together, parallel + resume-safe
 ├── proclock.py           # process lockfiles, one instance of each task
 ├── .env_template         # template: fill in your details, then rename to .env
@@ -328,6 +333,14 @@ The full statistics suite (calibration raw-vs-final by tier, override-as-detecto
 
 When the adjudicated sheet has verdicts, section [H] joins it back by `paper_id` and reports raw vs adjudicated accuracy/sensitivity/specificity per backend (gold overturned = effective gold label flipped) see `results/stats/adjudicated_metrics.csv` and the raw-vs-adjudicated dumbbell `results/figures/fig9_adjudicated_impact` (SVG + PNG). Re-run 05 after you finish the manual adjudication so [H] reflects your final verdicts.
 
+18. **Post-hoc analyses** (`ANALYSIS`, offline - no API calls, does not modify any 05_stats output):
+
+```bash
+    python 07_posthoc_analysis.py
+```
+
+Reads the deposited run data and writes `results/stats/posthoc_report.md`, five `posthoc_*.csv` tables and `results/figures/fig10_recall_vs_workload` (SVG + PNG). It adds the publication-facing analyses: (i) accuracy decomposed by decision layer, which shows how much each backend's headline number is the LLM vs the deterministic/fallback machinery (in the deposited run the deepseek arm is 91% regex-fallback decisions - only 198 of 1,968 papers carry actual DeepSeek output); (ii) keyword-off and LLM-decided counterfactuals (stripping the 133 Tier-1 keyword auto-exclusions raises Command-A sensitivity 76.2% -> 82.2% and Llama 85.5% -> 92.2%, while the keyword layer killed 53 gold-includes for every backend, led by over-broad criteria keywords like "adults"/"adolescents"/"children"); (iii) recall-vs-workload operating curves on the LLM-decided subset ranked by the AI's own confidence, with review-cluster bootstrap CIs for max workload-saved-at-95%-recall; (iv) effect-direction accuracy under the strict substring rule vs a fair 3-class fuzzy match (chance = 33.3%); (v) the Tier-1 keyword audit table.
+
 ---
 
 ## 8a. Running the ollama arm on a second machine 
@@ -344,6 +357,20 @@ keep the Ollama app running, pull the model that arm needs (`ollama pull llama3.
    
 3. **Main machine - finish:** 
 copy `results/ollama/` back (or `git pull`), then run steps 14–17 **once, after cohere + ollamads + ollama are all complete**.
+
+
+---
+
+## 8b. Key findings of the deposited run (summary)
+
+Full numbers: `results/stats/stats_report.md`, `results/stats/posthoc_report.md` (+ `posthoc_*.csv`), `results/audit/manual_adjudication_log_2026-09-04.md`.
+
+- **The safety layer works.** Ungrounded (hallucinated) extraction fields: 0.4–5.1% across ~26k fields; deterministic gating repaired the local models' calibration (raw ECE 0.43–0.66 → final 0.19–0.23); parse_ok 100% over ~12.5k calls; the 1,767-paper manual adjudication upheld 100% of the published gold labels.
+- **The automation promise does not hold at any tier.** Best workload-saved at 95% recall: 12.0% [3.3, 14.5] (Command-A), 4.4% (Llama 3.2), 2.5% (DeepSeek) — vs ~25–60% reported for frontier models in the literature. Effect-direction extraction is at chance (fuzzy 3-class: 26.6/36.3/33.2% vs 33.3% chance). Every backend over-includes (specificity 6–32%).
+- **The dominant error source is the Tier-1 criteria-keyword gate, not the models.** Identical 133 keyword auto-exclusions per backend killed 53 gold-includes each, driven by over-broad exclusion keywords ("adults": 32 fires/11 wrong, "adolescents", "children", "interventions"). Removing the gate raises sensitivity 76.2→82.2% (Command-A) and 85.5→92.2% (Llama).
+- **Model capability tier matters less than expected once gated.** The 111B cloud model and the 3B local model differ in degree (specificity 31.7 vs 6.1% on LLM-decided papers), not in kind; and the DeepSeek arm as-run is 91% regex-fallback decisions (only 198/1,968 papers carry actual DeepSeek output — see the layer decomposition in `posthoc_report.md`).
+
+**Conclusion.** ReviewAid v3.0.0's deterministic verification behaves as a reliable *brake*, not an *engine*: it makes weak local models safe to operate (grounded, calibrated, fully referred to humans) but no model tested — 3B local to 111B cloud — can yet screen or extract unsupervised, and the first thing to fix is verbatim-criteria keyword gating rather than model capability.
 
 
 ---

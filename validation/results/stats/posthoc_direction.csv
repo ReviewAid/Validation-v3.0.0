@@ -1,0 +1,4 @@
+model,source,n,strict_acc,fuzzy_acc
+ollamads,all extraction rows,342,"7.3% [5.0, 10.6] (n=342)","26.6% [22.2, 31.5] (n=342)"
+cohere,all extraction rows,2177,"8.0% [7.0, 9.3] (n=2177)","36.3% [34.3, 38.3] (n=2177)"
+ollama,all extraction rows,2122,"13.6% [12.2, 15.1] (n=2122)","33.2% [31.2, 35.2] (n=2122)"
