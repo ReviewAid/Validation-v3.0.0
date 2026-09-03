@@ -3902,4 +3902,4 @@ ajitsahu@Ajits-MacBook-Pro-2 validation % source .venv/bin/activate
 
 
 
-NOTE: These models were run part by part, on daily basis with intervals so that the load on hardware was minimal since the context token used was larger.
+NOTE: These models were run part by part, on daily basis with intervals so that the load on hardware was minimal since the context token used was larger. Only a part of the logs is stored here.
