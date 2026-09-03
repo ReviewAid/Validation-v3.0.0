@@ -1,14 +1,14 @@
 """Run the screener AND the extractor SIMULTANEOUSLY for each backend.
 
-    python run_all.py --model gemini              # 02 + 03 in parallel for Gemini
-    python run_all.py --model all              # gemini -> cohere -> ollama
-    python run_all.py --model cohere gemini       # any order you like
+    python run_all.py --model ollamads              # 02 + 03 in parallel for Ollama 8B
+    python run_all.py --model all              # ollamads -> cohere -> ollama
+    python run_all.py --model cohere ollamads       # any order you like
 
 Within a backend, screening (02_run_screening.py) and extraction
 (03_run_extraction.py) run as two parallel processes that share the backend's
 key pool (state/<provider>_usage.json is re-read on every key request, so the
 two processes never double-spend a key). Backends run sequentially by default;
-pass --fully-parallel to run every backend at once (only sensible for gemini +
+pass --fully-parallel to run every backend at once (only sensible for ollamads +
 cohere — two local Ollama jobs would fight over the Mac).
 
 Both processes are resume-safe: interrupt and rerun the same command.
@@ -18,7 +18,7 @@ import subprocess
 import sys
 import time
 
-MODELS = ["gemini", "cohere", "ollama"]
+MODELS = ["ollamads", "cohere", "ollama"]
 
 
 def spawn(model_key: str, script: str, extra: list[str]) -> subprocess.Popen:

@@ -148,15 +148,6 @@ def query_provider(model_key: str, prompt: str, temperature: float = 0.1,
             return prov.generate(messages, temperature, max_tokens)
         return keys_mod.rotate("cohere", _call)
 
-    if m.get("base_url"):
-        # OpenAI-compatible endpoint on a custom host (Gemini free tier):
-        # the tool's own OpenAIProvider + cohere-style rotation/backoff
-        def _call(k):
-            prov = utils.get_provider_instance(m["provider"], k, m["model"],
-                                               base_url=m["base_url"])
-            return prov.generate(messages, temperature, max_tokens)
-        return keys_mod.rotate(model_key, _call)
-
     key = m["keys"]()[0]  # Ollama: local, no keys
     base_url = config.OLLAMA_BASE_URL if m["provider"] == "Ollama (Local)" else None
     # Ollama-specific: screening + extraction run in parallel on one Mac, so the

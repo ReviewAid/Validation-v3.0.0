@@ -2,10 +2,7 @@
 
 - Cohere: trial keys allow ~1000 calls each (strict). Keys are retired on
   quota/auth errors; 429s are transient (backoff happens in ra_driver).
-- Gemini (Google AI Studio): free tier, ~1500 requests/day per project,
-  enforced server-side -> usage is tracked per key but there is no fixed
-  per-key call cap to retire on. Paste extra keys (one per project) into
-  GEMINI_API_KEYS in .env.
+- Local arms (Ollama): no keys at all.
 
 State lives in state/<provider>_usage.json and is RE-READ on every key request,
 making rotation safe across the parallel screening/extraction processes.
@@ -137,9 +134,6 @@ def get_manager(provider: str) -> RotatingKeys:
         if provider == "cohere":
             _MANAGERS[provider] = RotatingKeys(
                 "cohere", config.MODELS["cohere"]["keys"](), PER_KEY_LIMIT)
-        elif provider == "gemini":
-            _MANAGERS[provider] = RotatingKeys(
-                "gemini", config.MODELS["gemini"]["keys"](), None)
         else:
             raise KeyError(provider)
     return _MANAGERS[provider]
@@ -171,6 +165,7 @@ def call_with_rotation(make_call):
     return rotate("cohere", make_call)
 
 
+
 if __name__ == "__main__":
     print("Cohere:")
     try:
@@ -189,10 +184,5 @@ if __name__ == "__main__":
             print(f"  OK for screening. Full study needs ~{NEED_FULL} -> add {extra} more key(s).")
         else:
             print("  OK for the full study.")
-    except RuntimeError as e:
-        print(f"  {e}")
-    print("Gemini (free tier):")
-    try:
-        print(get_manager("gemini").usage_report())
     except RuntimeError as e:
         print(f"  {e}")

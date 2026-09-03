@@ -34,23 +34,19 @@ for _d in (CORPUS_DIR, SCREEN_PDF_DIR, EXTRACT_PDF_DIR, RAW_DIR, RESULTS_DIR,
 load_dotenv(BASE / ".env")
 
 # ---------------------------------------------------------------------------
-# Backends under test: free cloud / free cloud / weak local (~10x capability
+# Backends under test: cloud / mid local / weak local (~10x capability
 # spread). Not a contest - a stress test of the architecture.
 # ---------------------------------------------------------------------------
 MODELS = {
-    "gemini": {
-        "provider": "OpenAI", "model": "gemini-3.6-flash",
-        # Free tier (Google AI Studio key, https://aistudio.google.com/apikey):
-        # ~15 requests/min and ~1,500 requests/day per project, enforced
-        # server-side — a run that hits the daily cap just stops and is
-        # resumed the next day. Do NOT enable billing on the project (it can
-        # void the free tier). Uses the tool's own OpenAIProvider against
-        # Gemini's OpenAI-compatible endpoint.
-        "keys": lambda: [k.strip() for k in
-                         (os.getenv("GEMINI_API_KEYS") or os.getenv("GEMINI_API_KEY") or "").split(",")
-                         if k.strip()],
-        "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
-        "workers": 2,  # run_all runs 02+03 in parallel -> ~4 in-flight ≈ the ~15 RPM cap
+    "ollamads": {
+        "provider": "Ollama (Local)", "model": "deepseek-v2:16b-lite-chat",
+        # mid-tier local arm (replaces the free-cloud arm: Z.ai GLM and the
+        # Gemini free tier both proved rate-limited to impracticality).
+        # MoE 16B with ~2.4B active parameters: ~9B-dense quality at
+        # 3B-like speed, ~9 GB weights, compact MLA KV cache - cool-running
+        # on an 18 GB M3 Pro. Must NOT run at the same time as the 3b arm —
+        # run_all executes backends sequentially for exactly this reason.
+        "keys": lambda: [""], "workers": 1,
     },
     "cohere": {
         "provider": "Cohere", "model": "command-a-03-2025",

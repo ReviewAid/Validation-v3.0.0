@@ -486,9 +486,9 @@ one year. Gastrointestinal upset was the most common adverse effect.""",
     print(f"[demo] screening: {len(rows)} PDFs + labels + criteria")
     print(f"[demo] extraction: {len(tasks)} article PDFs + gold fields")
     print("[demo] test with:")
-    print("         python 02_run_screening.py --model gemini --limit 3")
-    print("         python 03_run_extraction.py --model gemini --limit 3")
-    print("         python 05_stats.py --models gemini")
+    print("         python 02_run_screening.py --model ollamads --limit 3")
+    print("         python 03_run_extraction.py --model ollamads --limit 3")
+    print("         python 05_stats.py --models ollamads")
     print("[demo] BEFORE building the real corpora, remove demo data:")
     print("         rm corpus/gold_labels.csv corpus/reviews.json "
           "corpus/extraction_tasks.csv corpus/pdfs/demo_*.pdf corpus/extraction_pdfs/demo_*.pdf")

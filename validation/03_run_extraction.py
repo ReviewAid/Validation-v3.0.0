@@ -152,7 +152,7 @@ def run_model(model_key: str, tasks: list, workers: int, limit: int = 0):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="all", choices=["gemini", "cohere", "ollama", "all"])
+    ap.add_argument("--model", default="all", choices=["ollamads", "cohere", "ollama", "all"])
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=0)
     args = ap.parse_args()
