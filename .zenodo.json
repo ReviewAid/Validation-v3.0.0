@@ -1,6 +1,6 @@
 {
   "title": "ReviewAid v3.0.0 Architecture Validation Study",
-  "version": "1.0",
+  "version": "2.0",
   "description": "Empirical validation of ReviewAid v3.0.0 against published human gold standards for full-text screening and structured data extraction. The study evaluates ReviewAid's architectural shift from LLM self-assessment to deterministic, source-grounded verification, including exact-string matching, semantic token overlap, negation detection, confidence scoring, and deterministic override logic. The validated artifact is the ReviewAid v3.0.0 software itself: all backends execute through the tool's production utils.py, parser.py, confidence.py, screener.py, and extractor.py code paths with the UI removed and the software version pinned to 3.0.0. The study evaluates three backends spanning approximately an order of magnitude in model capability: DeepSeek-V2-Lite 16B (local), Cohere command-a-03-2025, and Ollama llama3.2:3b. Two validation arms are included: full-text screening using the CSMeD-FT dataset and structured data extraction using EvidenceInference 2.0. The repository contains the validation driver, corpus-building scripts, analysis code, audit workflow, reproducibility configuration, logged results, statistical analyses, and publication figures. All analyses are derived from per-paper logged outputs without additional API calls. The deposited study materials do not redistribute third-party copyrighted article PDFs or proprietary API credentials.",
   "creators": [
     {
