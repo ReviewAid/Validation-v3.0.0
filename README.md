@@ -9,7 +9,7 @@ The JORS paper described v2.1.0; v3.0.0's paradigm shift **from LLM self-assessm
 
 **The validated artifact is the tool itself.** Every backend runs through ReviewAid v3.0.0's own `utils.py` / `parser.py` / `confidence.py` code paths - the exact screener and extractor prompts, the exact Tier-1 keyword rule, the exact confidence override - with the UI removed and version pinned (`CITATION.cff` must read `3.0.0`; the driver refuses to run otherwise). 
 
-The three backends are a **stress test, not a contest** - "a better model gives better output" is trivial. They span ~10× capability: cloud (Cohere `command-a-03-2025`), mid local (Ollama `deepseek-v2:16b-lite-chat`, MoE ~2.4B active), weak local (Ollama `llama3.2:3b`, 2 GB, M1-friendly).
+The three backends are a **stress test, not a contest** - "a better model gives better output" is trivial. They span ~10× capability: cloud (Cohere `command-a-03-2025`), mid local (Ollama `deepseek-v2:16b`, MoE ~2.4B active), weak local (Ollama `llama3.2:3b`, 2 GB, M1-friendly).
 
 > **Deviation from the original design:** the third arm was originally a *free cloud* model. Z.ai's GLM was planned first - GLM-4.5-Flash, GLM-4.6V-Flash and GLM-4.7-Flash were all piloted, but free-tier rate limits (account-level concurrency caps, persistent 429 storms visible even on a 3-paper pilot) made corpus-scale runs impractical. Google Gemini 3.6 Flash was tried next; its free tier allows only 20 requests/day per project, equally impractical for ~4,000 calls. The third arm therefore moved fully offline: a mid-tier local model, DeepSeek-V2-Lite 16B (MoE) via Ollama, alongside the weak Llama 3.2 3B arm.
 
@@ -78,7 +78,7 @@ validation/
 
 **Key rotation - Cohere.** `keys.py` fingerprints keys, persists counts to `state/<provider>_usage.json` (re-read on every request, so the parallel screening + extraction processes never double-spend a key), and always issues the least-used key. Cohere trial keys ≈1,000 calls each - a key is retired on quota/auth errors (429s are transient → exponential backoff in `query_provider`).
 
-**Two local arms.** `llama3.2:3b` (weak) and `deepseek-v2:16b-lite-chat` (mid) run through the same Ollama server. `run_all` executes backends **sequentially** so the two local jobs never compete for the Mac's memory/GPU (never pass `--fully-parallel` for the local arms). Ollama calls use the patient retry loop - 10 attempts with backoff to 120 s - for busy/timeout errors, and a paper that still fails becomes an accounted `error` row that reconciliation retries.
+**Two local arms.** `llama3.2:3b` (weak) and `deepseek-v2:16b` (mid) run through the same Ollama server. `run_all` executes backends **sequentially** so the two local jobs never compete for the Mac's memory/GPU (never pass `--fully-parallel` for the local arms). Ollama calls use the patient retry loop - 10 attempts with backoff to 120 s - for busy/timeout errors, and a paper that still fails becomes an accounted `error` row that reconciliation retries.
 
 **Resume + error retry.** Every finished paper appends one JSON line; re-runs skip completed IDs. A paper that failed *completely* (API dead even after retries AND fallback parse failed) is recorded as `decision: "error"` and error rows are **retried automatically on the next run** instead of being skipped. Downstream scripts dedupe by paper_id (newest row wins), so a retried paper's old error row never contaminates the analysis. Interrupt anything, rerun the same command, and it carries on exactly where it stopped.
 
@@ -106,7 +106,7 @@ pip install -r requirements.txt
 
 - Fill `validation/.env_template` with your details (Cohere keys, real `ENTREZ_EMAIL`/`UNPAYWALL_EMAIL`), then rename it to `validation/.env`.
   
-- **Local arms:** no keys at all. Pull both models once - `ollama pull llama3.2:3b` (~2 GB) and `ollama pull deepseek-v2:16b-lite-chat` (~9 GB) - and leave the Ollama app running during local runs.
+- **Local arms:** no keys at all. Pull both models once - `ollama pull llama3.2:3b` (~2 GB) and `ollama pull deepseek-v2:16b` (~9 GB) - and leave the Ollama app running during local runs.
   Check anytime: `python keys.py`.
 
 > Ollama is (the local arm) in this study because the architecture claim is strongest if a deliberately *weak local* model (3B parameters) is still made safe by ReviewAid's confidence gating.
@@ -333,7 +333,7 @@ clone this repo → create the venv (`pip install -r requirements.txt`) → fill
 
    
 2. **Machine 2 - run:** 
-keep the Ollama app running, pull the model that arm needs (`ollama pull llama3.2:3b` for the weak arm, `ollama pull deepseek-v2:16b-lite-chat` (~9 GB) for the mid arm), then `python run_all.py --model ollama` (or `--model ollamads`). Nothing else, no audit, no stats.
+keep the Ollama app running, pull the model that arm needs (`ollama pull llama3.2:3b` for the weak arm, `ollama pull deepseek-v2:16b` (~9 GB) for the mid arm), then `python run_all.py --model ollama` (or `--model ollamads`). Nothing else, no audit, no stats.
    
    
 3. **Main machine - finish:** 

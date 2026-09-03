@@ -39,7 +39,7 @@ load_dotenv(BASE / ".env")
 # ---------------------------------------------------------------------------
 MODELS = {
     "ollamads": {
-        "provider": "Ollama (Local)", "model": "deepseek-v2:16b-lite-chat",
+        "provider": "Ollama (Local)", "model": "deepseek-v2:16b",
         # mid-tier local arm (replaces the free-cloud arm: Z.ai GLM and the
         # Gemini free tier both proved rate-limited to impracticality).
         # MoE 16B with ~2.4B active parameters: ~9B-dense quality at
