@@ -1,0 +1,71 @@
+Last login: Thu Sep  3 08:04:53 on ttys002
+ajitsahu@Unknown_ee:c3:de:8a:2f:ca ~ % ollama show deepseek-v2:16b
+  Model
+    architecture        deepseek2    
+    parameters          15.7B        
+    context length      163840       
+    embedding length    2048         
+    quantization        Q4_0         
+
+  Capabilities
+    completion    
+
+  Parameters
+    stop    "User:"         
+    stop    "Assistant:"    
+
+  License
+    DEEPSEEK LICENSE AGREEMENT      
+    Version 1.0, 23 October 2023    
+    ...                             
+
+ajitsahu@Unknown_ee:c3:de:8a:2f:ca ~ % 
+
+
+
+=========================================================================
+
+
+ajitsahu@Unknown_ee:c3:de:8a:2f:ca ~ % ollama show llama3.2:3b
+  Model
+    architecture        llama     
+    parameters          3.2B      
+    context length      131072    
+    embedding length    3072      
+    quantization        Q4_K_M    
+
+  Capabilities
+    completion    
+    tools         
+
+  Parameters
+    stop    "<|start_header_id|>"    
+    stop    "<|end_header_id|>"      
+    stop    "<|eot_id|>"             
+
+  License
+    LLAMA 3.2 COMMUNITY LICENSE AGREEMENT                 
+    Llama 3.2 Version Release Date: September 25, 2024    
+    ...                                                   
+
+ajitsahu@Unknown_ee:c3:de:8a:2f:ca ~ % 
+
+
+
+============================================================================
+
+
+About Cohere model : command-a-03-2025
+
+
+  Model
+    architecture        cohere2
+    parameters          111B
+    context length      256000
+    embedding length    256000
+    
+
+  License
+    COHERE FOR AI COMMUNITY LICENSE
+
+    
