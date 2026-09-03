@@ -92,7 +92,7 @@ validation/
 ## 6. Setup (once)
 
 ```bash
-cd validation
+cd validation   # (validation folder within the repository)
 ```
 
 ```bash
