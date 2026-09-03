@@ -55,7 +55,8 @@ validation/
 ├── results/stats/        # CSVs + stats_report.md
 ├── results/figures/      # *.svg + *.png
 ├── results/audit/        # adjudication_sheet_union.xlsx (built by 04, filled
-│                         # by 06 + manual adjudication)
+│                         # by 06 + manual adjudication), pre-adjudication
+│                         # backup, manual_adjudication_log_2026-09-04.md
 └── state/                # Cohere usage counters
 ```
 
@@ -311,6 +312,11 @@ Builds ONE union sheet: every paper where any backend disagreed with the publish
 It writes a *suggestion* into `human_agrees_with_gold` for every blank row (`yes` = some backend matched the gold label, `no` = a backend made a concrete decision against gold, `unsure` = only "maybe" referrals or no usable decisions) plus a factual counts line in `notes`. It never touches rows you already filled, so re-running is safe - but do your manual pass AFTER the last re-run, and verify every `no`/`unsure` row against the PDF.
 
 Then manually check `human_agrees_with_gold` (yes/no/unsure). One adjudication covers all backends (the verdict is about the published gold label, not the tool).
+
+**Manual adjudication completed (2026-09-04).** All 406 rows the pre-fill had set to `no` (344 false positives, 62 false negatives) were verified against each paper's PDF text and the frozen review criteria (`corpus/reviews.json`, exclusion reasons in `corpus/gold_labels.csv`). In every case the published gold label was upheld - the backends were wrong, typically via Tier-1 keyword false triggers (e.g. a subacute/chronic LBP trial auto-excluded on "acute LBP" appearing only in background text), deepseek's `Regex Fallback: Inferred Inclusion (Local)`, or shallow PICO matching (e.g. a student critical-appraisal essay counted as an eligible RCT). All 406 were therefore adjudicated `yes` (human agrees with gold); no `no`/`unsure` rows remain. Artifacts in `results/audit/`:
+- `adjudication_sheet_union.xlsx` - the adjudicated sheet (1767/1767 `yes`)
+- `adjudication_sheet_union.backup_prefill_2026-09-04.xlsx` - pre-adjudication backup
+- `manual_adjudication_log_2026-09-04.md` - method, failure-mode summary, and the per-row record of all 406 changes
 
 17. **ANALYSIS** (`ANALYSIS`):
 
